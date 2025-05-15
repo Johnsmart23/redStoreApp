@@ -1,36 +1,6 @@
 @import "@fortawesome/fontawesome-free/css/all.css";
 
 /* Header */
-.search-container {
-  display: flex;
-  align-items: center;
-}
-
-.search-form {
-  display: flex;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  padding: 5px;
-}
-
-.search-input {
-  border: none;
-  padding: 5px 10px;
-  outline: none;
-}
-
-.search-button {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  width: 10%;
-  padding: 5px;
-}
-
-.search-input:focus {
-  border-color: #007bff;
-}
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -362,6 +332,33 @@
 }
 
 /* Product Section */
+
+/* Header with Search */
+.header-with-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 100px;
+  padding: 10px;
+  width: 400px;
+}
+
+.searchInput {
+  width: 250px;
+  padding: 10px 15px;
+  border: 2px solid #ccc;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
 .small-container {
   max-width: 1200px;
   margin: auto;
@@ -435,12 +432,20 @@
   .col-4 img {
     max-width: 100%;
   }
+  .header-with-search {
+    gap: 50px;
+    width: 40px;
+  }
 }
 @media (max-width: 480px) {
   .col-4 {
     flex: 1 1 100%;  
     max-width: 100%;
     margin-bottom: 20px;  
+  }
+  .header-with-search {
+    gap: 30px;
+    width: 30px;
   }
 
   .title {
