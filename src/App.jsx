@@ -1,20 +1,22 @@
-import './App.css';
+import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import Display from './components/Display';
-import Product from './components/Product';
-import Brand from './components/Brand';
-import Testimonial from './components/Testimonial';
-import Sponsor from './components/Sponsor';
-import Footer from './components/Footer';
-import CartPage from './components/CartPage';
-import Account from './components/Account'; 
-import CheckoutPage from './components/CheckoutPage'; 
-import Contact from './components/Contact';
-import AboutUs from './components/AboutUs'; 
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import Display from "./components/Display";
+import Product from "./components/Product";
+import Brand from "./components/Brand";
+import Testimonial from "./components/Testimonial";
+import Sponsor from "./components/Sponsor";
+import Footer from "./components/Footer";
+import CartPage from "./components/CartPage";
+import Account from "./components/Account";
+import CheckoutPage from "./components/CheckoutPage";
+import Contact from "./components/Contact";
+import AboutUs from "./components/AboutUs";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -143,12 +145,32 @@ const App = () => {
               </>
             }
           />
-          
+
           <Route
             path="/about-us"
             element={
               <>
                 <AboutUs />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/login"
+            element={
+              <>
+                <Login />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/signup"
+            element={
+              <>
+                <Signup />
                 <Footer />
               </>
             }
