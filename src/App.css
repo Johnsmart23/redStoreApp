@@ -22,6 +22,12 @@
   transition: all 0.3s ease;
 }
 
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .nav-links {
   display: flex;
   gap: 1rem;
@@ -61,9 +67,9 @@
   z-index: 1000; 
 }
 
-.logo {
+/* .logo {
   flex: 1;
-}
+} */
 
 .logo-img {
   width: 100px; 
@@ -920,11 +926,10 @@ hr {
   text-align: center;
 }
 .product-image {
-  width: 100%;
   max-width: 300px; 
-  height: auto;
+  height: 300px;
   border-radius: 10px;
-  object-fit: cover;
+  object-fit: contain;
   margin-bottom: 15px; 
 }
 .header-with-search{
@@ -942,7 +947,6 @@ hr {
   margin-bottom: 20px;
 }
 button {
-  margin-top: 10px;
   padding: 12px 25px; 
   border: none;
   border-radius: 5px;
@@ -1816,24 +1820,37 @@ p a:hover {
   background-color: #45a049;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.user-avatar {
+  color: #ff523b;
+}
+
 .user-email {
   color: #333;
   font-size: 14px;
-  padding: 8px 12px;
-  background-color: #f5f5f5;
-  border-radius: 4px;
-  margin-right: 10px;
+  text-align: center;
 }
 
 .logout-btn {
   background-color: #ff523b;
   color: white;
   border: none;
-  padding: 8px 16px;
+  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   transition: background-color 0.3s;
+  width: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 .logout-btn:hover {
@@ -1841,13 +1858,18 @@ p a:hover {
 }
 
 @media (max-width: 768px) {
+  .user-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
   .user-email {
     font-size: 12px;
-    padding: 6px 10px;
   }
 
   .logout-btn {
-    padding: 6px 12px;
+    padding: 4px 8px;
     font-size: 12px;
   }
 }
