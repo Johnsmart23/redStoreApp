@@ -11,14 +11,27 @@ const Header = ({ cartCount }) => {
 
   useEffect(() => {
     // Get initial session
-    const session = supabase.auth.getSession();
-    setUser(session?.user ?? null);
+    const getInitialSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session?.user?.email_confirmed_at) {
+        setUser(session.user);
+      } else {
+        setUser(null);
+      }
+    };
+    getInitialSession();
 
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      if (session?.user?.email_confirmed_at) {
+        setUser(session.user);
+      } else {
+        setUser(null);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -49,7 +62,11 @@ const Header = ({ cartCount }) => {
   }, []);
 
   return (
-    <header className={`header ${isScrolled ? "scrolled" : ""}`}>
+    <header
+      className={`header ${
+        isScrolled ? "scrolled" : ""
+      } flex justify-between items-center`}
+    >
       <div className="logo">
         <img src="/images/logo 2.png" alt="Logo" className="logo-img" />
       </div>
@@ -73,30 +90,33 @@ const Header = ({ cartCount }) => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
-          {user ? (
-            <>
-              <li className="user-email">{user.email}</li>
-              <li>
-                <button onClick={handleLogout} className="logout-btn">
-                  Logout
-                </button>
-              </li>
-            </>
-          ) : (
-            <li>
-              <Link to="/login">
-                <FaUserCircle size={30} />
-              </Link>
-            </li>
-          )}
         </ul>
       </nav>
 
-      <div className="cart-icon">
-        <Link to="/cart">
-          <FaShoppingCart />
-          {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
-        </Link>
+      <div className="header-right">
+        {user ? (
+           
+            <div className="user-info">
+            <FaUserCircle size={30} />
+              <span className="user-email">{user.email}</span>
+              <button onClick={handleLogout} className="logout-btn">
+                Logout
+              </button>
+            </div>
+        ) : (
+          <div>
+            <Link to="/login">
+              <FaUserCircle size={30} />
+            </Link>
+          </div>
+        )}
+
+        <div className="cart-icon">
+          <Link to="/cart">
+            <FaShoppingCart />
+            {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
+          </Link>
+        </div>
       </div>
     </header>
   );
