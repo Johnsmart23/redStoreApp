@@ -16,7 +16,7 @@ const AccountPage = () => {
       <div className="image-section">
         <img src="images/image1.png" alt="Account Illustration" />
       </div>
-      <div className="form-section">
+      <form className="form-section">
         <div className="form-container">
           <div className="tab-titles">
             <p
@@ -55,7 +55,7 @@ const AccountPage = () => {
             )}
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
